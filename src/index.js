@@ -87,4 +87,4 @@ app.get("/metrics", (req, res) => {
 
 app.listen(port,host);
 
-});
+console.log("App is running on "+host+":"+port);
