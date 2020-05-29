@@ -9,6 +9,9 @@ const cors = require("cors");
 const path = require("path");
 const server = "127.0.0.1:27017"; // REPLACE WITH YOUR DB SERVER
 const database = "db-bank";
+const host = process.env.IP  || '0.0.0.0';
+const port = process.env.PORT || 8080;
+
 
 app = express();
 app.options("/signin", cors());
@@ -16,7 +19,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(authRoutes);
 
-const mongoUri = `mongodb://${server}/${database}`;
+const mongoUri =  process.env.MONGODB_URL || `mongodb://${server}/${database}`;
 if (!mongoUri) {
   throw new Error(`MongoURI was not supplied.`);
 }
@@ -82,6 +85,6 @@ app.get("/metrics", (req, res) => {
   res.end(client.register.metrics());
 });
 
-app.listen(3004, () => {
-  console.log("Listening on port 3004");
+app.listen(port,host);
+
 });
