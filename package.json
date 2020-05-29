@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"http-server build --cors",
     "dev": "nodemon src/index.js",
-    "mongomet": "node src/MongoMetrics.js"
+    "start":"npm run dev",
   },
   "keywords": [],
   "author": "",
