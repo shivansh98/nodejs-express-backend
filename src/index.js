@@ -36,7 +36,11 @@ mongoose.connection
     console.error("Error connecting to mongo", err);
   });
 
-///app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/",function(req,res){
+  res.sendFile(path.join(__dirname,'build','index.html'));
+});
 
 app.use(function (req, res, next) {
   res.header(
@@ -67,9 +71,6 @@ const histogram = new client.Histogram({
 });
 
 
-app.get("*",(req,res)=>{
-  res.send("index_path");
-});
 let start = new Date();
 app.get("/", requireAuth, (req, res) => {
   const user = req.user;
