@@ -66,13 +66,16 @@ const histogram = new client.Histogram({
   buckets: [1, 2, 5, 6, 10],
 });
 
-let start = new Date();
 
+app.get("*",(req,res)=>{
+  res.send("index_path");
+});
+let start = new Date();
 app.get("/", requireAuth, (req, res) => {
   const user = req.user;
   let end = new Date() - start;
   histogram.observe(end / 1000); /// chnaging in seconds
-  counter.inc(10);
+  counter.inc();
   res.send(user);
 });
 
