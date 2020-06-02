@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   image: {
-    type: mongoose.SchemaTypes.Mixed,
+    type: Object,
     required: true,
   },
 });
